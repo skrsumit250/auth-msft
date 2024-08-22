@@ -11,7 +11,6 @@ function App(){
     const [username,setUsername] = useState('');
     const [message,setMessage] = useState('');
     const [success,setSuccess] = useState(false);
-    const [newUser,setNewUser] = useState(true);
 
     const token = import.meta.env.VITE_GitHub_Token;
 
@@ -46,9 +45,7 @@ function App(){
             if(isCollaborator){
               // console.log('User is already a Collaborator');
               // Redirect to Repo Link
-              setGithubid(githubid);
-              setSuccess(true);
-              setNewUser(false);
+              window.location.href = "https://github.com/skrsumit250/BSBE-Archive";
               return;
             }
             else{
@@ -73,7 +70,6 @@ function App(){
         
                     setUsername(result.user.displayName);
                     setGithubid(githubid);
-                    setNotice(str);
                     setSuccess(true);
                 } 
                 catch(error){
@@ -107,12 +103,6 @@ function App(){
         console.log(error);
       }
     };
-
-    useEffect(() => {
-      if(!newUser){
-        window.location.href = "https://github.com/skrsumit250/BSBE-Archive"; 
-      }
-    }, [newUser]);
 
     return(
       <>
