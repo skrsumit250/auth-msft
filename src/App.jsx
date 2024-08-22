@@ -33,6 +33,10 @@ function App(){
           setMessage("GitHub Account Found.");
     
           try{
+            console.log(token);
+            console.log(url);
+            console.log(headers);
+            
             const response = await axios.get(url ,{headers});
             const collaborators = response.data;
             console.log('collaborators',collaborators);
