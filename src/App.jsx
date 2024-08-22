@@ -17,7 +17,7 @@ function App(){
   
       const owner = "skrsumit250";
       const repo = "BSBE-Archive"
-      const token = "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";
+      const token = "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";
       const url = `https://api.github.com/repos/${owner}/${repo}/collaborators`;
       const headers = {Authorization: `Bearer ${token}`};
   
@@ -31,15 +31,8 @@ function App(){
           const GitHubUser = await response.json();
           console.log('GitHubUser',GitHubUser);
           setMessage("GitHub Account Found.");
-
-          console.log(token);
-          console.log(url);
-          console.log(headers);
     
           try{
-            console.log(token);
-            console.log(url);
-            console.log(headers);
 
             const response = await axios.get(url ,{headers});
             const collaborators = response.data;
