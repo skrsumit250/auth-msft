@@ -5,9 +5,9 @@ import { getDatabase, ref, set } from 'firebase/database';
 import axios from 'axios';
 import { useState } from 'react';
 import dotenv from 'dotenv';
-dotenv.config();
 
 function App(){
+    dotenv.config();
     const [githubid,setGithubid] = useState('');
     const [username,setUsername] = useState('');
     const [message,setMessage] = useState('');
@@ -18,7 +18,7 @@ function App(){
   
       const owner = "skrsumit250";
       const repo = "RandomPDBGen"
-      const token = process.env.GitHubToken;
+      const token = "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";
       const url = `https://api.github.com/repos/${owner}/${repo}/collaborators`;
       const headers = {Authorization: `Bearer ${token}`};
   
@@ -51,7 +51,7 @@ function App(){
               const provider = new OAuthProvider('microsoft.com');
               provider.setCustomParameters({
                 prompt: 'consent',
-                tenant: process.env.tenantId,
+                tenant: '850aa78d-94e1-4bc6-9cf3-8c11b530701c',
               });
         
               try {
