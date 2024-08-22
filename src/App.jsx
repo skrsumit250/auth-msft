@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 function App(){
-  
+
     const [githubid,setGithubid] = useState('');
     const [username,setUsername] = useState('');
     const [message,setMessage] = useState('');
@@ -16,7 +16,7 @@ function App(){
       setGithubid(e.target.value);
   
       const owner = "skrsumit250";
-      const repo = "RandomPDBGen"
+      const repo = "BSBE-Archive"
       const token = "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";
       const url = `https://api.github.com/repos/${owner}/${repo}/collaborators`;
       const headers = {Authorization: `Bearer ${token}`};
