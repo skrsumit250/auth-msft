@@ -17,7 +17,7 @@ function App(){
   
       const owner = "skrsumit250";
       const repo = "RandomPDBGen"
-      const token = "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";
+      const token = process.env.GitHubToken;
       const url = `https://api.github.com/repos/${owner}/${repo}/collaborators`;
       const headers = {Authorization: `Bearer ${token}`};
   
@@ -50,7 +50,7 @@ function App(){
               const provider = new OAuthProvider('microsoft.com');
               provider.setCustomParameters({
                 prompt: 'consent',
-                tenant: '850aa78d-94e1-4bc6-9cf3-8c11b530701c',
+                tenant: process.env.tenantId,
               });
         
               try {
