@@ -17,7 +17,7 @@ function App(){
   
       const owner = "skrsumit250";
       const repo = "BSBE-Archive"
-      const token = "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";
+      const token = "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";
       const url = `https://api.github.com/repos/${owner}/${repo}/collaborators`;
       const headers = {Authorization: `Bearer ${token}`};
   
