@@ -20,8 +20,8 @@ function App(){
       const repo = "BSBE-Archive"
       // Issue: Whenever i pushes a token key it gets deleted
       
-      console.log(token);
-      
+      console.log('token',token);
+
       const url = `https://api.github.com/repos/${owner}/${repo}/collaborators`;
       const headers = {Authorization: `Bearer ${token}`};
   
