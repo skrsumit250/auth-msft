@@ -11,15 +11,17 @@ function App(){
     const [username,setUsername] = useState('');
     const [message,setMessage] = useState('');
     const [success,setSuccess] = useState(false);
-  
+    const token = import.meta.env.VITE_GitHub_Token;
+
     const handleClick = async (e) => {
       setGithubid(e.target.value);
-  
+
       const owner = "skrsumit250";
       const repo = "BSBE-Archive"
       // Issue: Whenever i pushes a token key it gets deleted
-      const token = import.meta.env.VITE_GitHub_Token;
+      
       console.log(token);
+      
       const url = `https://api.github.com/repos/${owner}/${repo}/collaborators`;
       const headers = {Authorization: `Bearer ${token}`};
   
