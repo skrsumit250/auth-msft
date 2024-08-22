@@ -3,7 +3,7 @@ import { auth } from './config';
 import { OAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getDatabase, ref, set } from 'firebase/database';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 function App(){
 
@@ -11,6 +11,8 @@ function App(){
     const [username,setUsername] = useState('');
     const [message,setMessage] = useState('');
     const [success,setSuccess] = useState(false);
+    const [newUser,setNewUser] = useState(true);
+
     const token = import.meta.env.VITE_GitHub_Token;
 
     const handleClick = async (e) => {
@@ -18,9 +20,8 @@ function App(){
 
       const owner = "skrsumit250";
       const repo = "BSBE-Archive"
-      // Issue: Whenever i pushes a token key it gets deleted
       
-      console.log('token',token);
+      // console.log('token',token);
 
       const url = `https://api.github.com/repos/${owner}/${repo}/collaborators`;
       const headers = {Authorization: `Bearer ${token}`};
@@ -33,22 +34,21 @@ function App(){
         } 
         else{
           const GitHubUser = await response.json();
-          console.log('GitHubUser',GitHubUser);
-          setMessage("GitHub Account Found.");
+          // console.log('GitHubUser',GitHubUser);
     
           try{
 
             const response = await axios.get(url ,{headers});
             const collaborators = response.data;
-            console.log('collaborators',collaborators);
+            // console.log('collaborators',collaborators);
     
             const isCollaborator = collaborators.some(collaborator => collaborator.login === githubid);
             if(isCollaborator){
-              console.log('User is already a Collaborator');
+              // console.log('User is already a Collaborator');
               // Redirect to Repo Link
-              console.log(githubid);
               setGithubid(githubid);
               setSuccess(true);
+              setNewUser(false);
               return;
             }
             else{
@@ -63,16 +63,17 @@ function App(){
                 // Handle successful sign-in
                 const credential = OAuthProvider.credentialFromResult(result);
                 const accessToken = credential.accessToken;
-                console.log(result.user);
+                // console.log(result.user);
         
                 try{
                     const newURL = `https://api.github.com/repos/${owner}/${repo}/collaborators/${githubid}`;
                     const response = await axios.put(newURL , {},{headers});
                     const githubData = response.data;
-                    console.log(githubData);
+                    // console.log(githubData);
         
                     setUsername(result.user.displayName);
                     setGithubid(githubid);
+                    setNotice(str);
                     setSuccess(true);
                 } 
                 catch(error){
@@ -106,6 +107,13 @@ function App(){
         console.log(error);
       }
     };
+
+    useEffect(() => {
+      if(!newUser){
+        window.location.href = "https://github.com/skrsumit250/BSBE-Archive"; 
+      }
+    }, [newUser]);
+
     return(
       <>
         { !success && 
@@ -127,7 +135,8 @@ function App(){
         { success &&
           <div className="welcome">
               <h1>Welcome {githubid} !</h1>
-              <p>Accept the invite link sent to your GitHub linked Email id, After you can access The BSBE Archive link below.</p>
+              <p>Accept the invite link sent to your GitHub linked Email id</p>
+              <p>Access The BSEBE Archive through below link!</p>
               <a href="https://github.com/skrsumit250/BSBE-Archive">github.com/skrsumit250/BSBE-Archive</a>
           </div>
         }
