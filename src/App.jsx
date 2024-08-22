@@ -18,7 +18,7 @@ function App(){
   
       const owner = "skrsumit250";
       const repo = "RandomPDBGen"
-      // const token = process.env.GitHubToken;
+      const token = process.env.GitHubToken;
       const url = `https://api.github.com/repos/${owner}/${repo}/collaborators`;
       const headers = {Authorization: `Bearer ${token}`};
   
