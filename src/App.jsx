@@ -4,7 +4,8 @@ import { OAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getDatabase, ref, set } from 'firebase/database';
 import axios from 'axios';
 import { useState } from 'react';
-// import Welcome from './Welcome';
+import dotenv from 'dotenv';
+dotenv.config();
 
 function App(){
     const [githubid,setGithubid] = useState('');
